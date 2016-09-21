@@ -23,7 +23,7 @@
     
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
-    <mapping class="br.com.petasoft.model.Pessoa"/>
-    <mapping class="br.com.petasoft.model.Usuario"/>
+    <mapping class="br.com.petasoft.model.Cidade"/>
+    <mapping class="br.com.petasoft.model.Cidadao"/>
   </session-factory>
 </hibernate-configuration>

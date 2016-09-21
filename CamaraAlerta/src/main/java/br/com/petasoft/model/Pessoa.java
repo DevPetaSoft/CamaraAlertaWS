@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="si_pessoa")
-@Table(name="si_pessoa")
+@Entity(name="ca_pessoa")
+@Table(name="ca_pessoa")
 public class Pessoa {
 	@Id
 	@GeneratedValue

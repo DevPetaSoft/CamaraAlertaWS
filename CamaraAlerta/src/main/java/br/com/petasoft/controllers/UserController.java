@@ -5,13 +5,17 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.boilerplate.NoCache;
+import br.com.petasoft.dao.CidadeDAO;
 import br.com.petasoft.dao.PessoaDao;
+import br.com.petasoft.model.Cidade;
 import br.com.petasoft.model.Pessoa;
 
 @Controller
 @Path("/user")
 public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractController {
 	public static PessoaDao pDao = new PessoaDao();
+	public static CidadeDAO cDao = new CidadeDAO();
+	
 	@Get("/teste")
 	@NoCache
 	public void teste(){
@@ -21,10 +25,10 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	@Post("/teste")
 	@NoCache
 	public void testePost(){
-		Pessoa p = new Pessoa();
-		p.setCpf("123");
-		p.setNome("teste");
-		pDao.salvar(p);
+		Cidade cidade = new Cidade();
+		cidade.setEstado("Minas Gerais");
+		cidade.setNome("Varginha");
+		cDao.Salvar(cidade);
 		this.success("Ok");
 	}
 }
