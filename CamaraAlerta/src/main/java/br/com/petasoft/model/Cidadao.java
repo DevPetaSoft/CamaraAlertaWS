@@ -13,24 +13,11 @@ import javax.persistence.Table;
 
 @Entity(name="ca_cidadao")
 @Table(name="ca_cidadao")
-public class Cidadao implements Serializable {
+public class Cidadao extends User implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	@Column(nullable=false,unique=false,length=50)
-	private String nome;
-	
-	@Column(nullable=true,unique=true,length=50)
-	private String login;
-	
-	@Column(nullable=true,unique=false,length=16)
-	private String senha;
 	
 	@Column(nullable=true)
 	private Date dataNascimento;
@@ -44,11 +31,6 @@ public class Cidadao implements Serializable {
 	@ManyToOne(targetEntity=Cidade.class, fetch=FetchType.EAGER, optional=false)
 	private Cidade cidade;
 	
-	@Column(nullable=true, length=255)
-	private String tokenFacebook;
-	
-	@Column(nullable=true, length=255)
-	private String tokenGPlus;
 	
 	@Column(nullable=true, length=14)
 	private String cpf;
@@ -62,37 +44,6 @@ public class Cidadao implements Serializable {
 	@Column(nullable=true)
 	private boolean deleted;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -124,22 +75,6 @@ public class Cidadao implements Serializable {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
-	}
-
-	public String getTokenFacebook() {
-		return tokenFacebook;
-	}
-
-	public void setTokenFacebook(String tokenFacebook) {
-		this.tokenFacebook = tokenFacebook;
-	}
-
-	public String getTokenGPlus() {
-		return tokenGPlus;
-	}
-
-	public void setTokenGPlus(String tokenGPlus) {
-		this.tokenGPlus = tokenGPlus;
 	}
 
 	public String getCpf() {

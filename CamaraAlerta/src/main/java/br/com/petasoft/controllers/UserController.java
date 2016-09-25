@@ -16,11 +16,11 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	public static PessoaDao pDao = new PessoaDao();
 	public static CidadeDAO cDao = new CidadeDAO();
 	
-	@Get("/teste")
+/*	@Get("/teste")
 	@NoCache
 	public void teste(){
 		this.success("teste");
-	}
+	}*/
 	
 	@Post("/teste")
 	@NoCache
@@ -29,6 +29,6 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 		cidade.setEstado("Minas Gerais");
 		cidade.setNome("Varginha");
 		cDao.Salvar(cidade);
-		this.success("Ok");
+		this.success(cidade);
 	}
 }

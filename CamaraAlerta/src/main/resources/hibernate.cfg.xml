@@ -26,5 +26,7 @@
     <mapping class="br.com.petasoft.model.Administrador"/>
     <mapping class="br.com.petasoft.model.Cidade"/>
     <mapping class="br.com.petasoft.model.Cidadao"/>
+    <mapping class="br.com.petasoft.model.User"/>
+    <mapping class="br.com.petasoft.model.Vereador"/>
   </session-factory>
 </hibernate-configuration>
