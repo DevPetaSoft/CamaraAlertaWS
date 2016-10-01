@@ -24,8 +24,11 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
     <mapping class="br.com.petasoft.model.Administrador"/>
-    <mapping class="br.com.petasoft.model.Cidade"/>
     <mapping class="br.com.petasoft.model.Cidadao"/>
+    <mapping class="br.com.petasoft.model.Cidade"/>
+    <mapping class="br.com.petasoft.model.Coordenadas"/>
+    <mapping class="br.com.petasoft.model.Denuncia"/>
+    <mapping class="br.com.petasoft.model.MensagemChat"/>
     <mapping class="br.com.petasoft.model.User"/>
     <mapping class="br.com.petasoft.model.Vereador"/>
   </session-factory>

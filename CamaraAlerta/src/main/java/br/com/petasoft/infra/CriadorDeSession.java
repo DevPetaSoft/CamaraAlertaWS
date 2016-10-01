@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import br.com.petasoft.model.Pessoa;
 
 public class CriadorDeSession {
 
