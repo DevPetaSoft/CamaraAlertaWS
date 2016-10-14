@@ -40,4 +40,23 @@ public class UsuarioDAO {
 		Cidadao cidadao = (Cidadao) criteria.uniqueResult();
 		return cidadao;
 	}
+	
+	public Cidadao salvarNovoCidadaoFacebookToken(String token, String nome, String email){
+		Transaction tx = session.beginTransaction();
+		Cidadao c = new Cidadao();
+		c.setTokenFacebook(token);
+		c.setNome(nome);
+		c.setEmail(email);
+		session.save(c);
+		tx.commit();
+		return c;
+	}
+	
+	public Cidadao buscarPorLoginESenha(String login, String senha){
+		Criteria criteria =  this.session.createCriteria(Cidadao.class);
+		criteria.add(Restrictions.eq("login", login));
+		criteria.add(Restrictions.eq("senha", senha));
+		Cidadao cidadao = (Cidadao) criteria.uniqueResult();
+		return cidadao;
+	}
 }

@@ -19,12 +19,7 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	
 	public static CidadeDAO cDao = new CidadeDAO();
 	public static UsuarioDAO uDao = new UsuarioDAO();
-	
-/*	@Get("/teste")
-	@NoCache
-	public void teste(){
-		this.success("teste");
-	}*/
+
 	
 	@Post("/teste")
 	@NoCache
@@ -43,6 +38,7 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	 */
 	@Get("/facebookLogin")
 	public void facebookLogin(String token){
+		LOGGER.info("Realizando login por facebook");
 		Cidadao cidadao = new Cidadao();
 		cidadao = uDao.buscarUsuarioPorFacebookToken(token);
 		if(cidadao == null){
@@ -53,16 +49,31 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	}
 	
 	/*
-	 *  Requisição get para realizar o login via facebook,
+	 *  Requisição get para realizar o login via google plus,
 	 *  Se encontrar um usuário pelo token, ele retorna o usuário,
 	 *  caso ao contrário, é enviada uma flag para realizar um novo cadastro.
 	 */
 	@Get("/gplusLogin")
 	public void gplusLogin(String token){
+		LOGGER.info("Realizando login por google plus");
 		Cidadao cidadao = new Cidadao();
 		cidadao = uDao.buscarUsuarioPorGPlusToken(token);
 		if(cidadao == null){
 			this.success("novoCadastro");
+		}else{
+			this.success(cidadao);
+		}
+	}
+	
+	
+	@Post("/login")
+	public void login(String login, String senha){
+		LOGGER.info("LOGIN: "+ login);
+		LOGGER.info("SENHA: "+ senha);
+		Cidadao cidadao;
+		cidadao = uDao.buscarPorLoginESenha(login, senha);
+		if(cidadao == null){
+			this.fail();
 		}else{
 			this.success(cidadao);
 		}

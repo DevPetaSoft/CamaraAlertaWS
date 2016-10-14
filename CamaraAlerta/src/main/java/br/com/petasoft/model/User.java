@@ -26,6 +26,17 @@ public class User {
 	@Column(nullable=true,unique=false,length=16)
 	private String senha;
 	
+	@Column(nullable=false,unique=true,length=50)
+	private String email;
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public int getId() {
 		return id;
 	}
