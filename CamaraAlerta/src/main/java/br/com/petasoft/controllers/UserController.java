@@ -1,5 +1,7 @@
 package br.com.petasoft.controllers;
 
+import javax.ws.rs.Produces;
+
 import org.apache.log4j.Logger;
 
 import br.com.caelum.vraptor.Controller;
@@ -16,7 +18,7 @@ import br.com.petasoft.model.Cidade;
 @Path("/user")
 public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractController {
 	final static Logger logger = Logger.getLogger(UserController.class);
-	
+
 	public static CidadeDAO cDao = new CidadeDAO();
 	public static UsuarioDAO uDao = new UsuarioDAO();
 
@@ -65,11 +67,10 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 		}
 	}
 	
-	
+	// Realiza a o login de um cidadao
+	@Produces("text/json; charset=UTF-8")
 	@Post("/login")
-	public void login(String login, String senha){
-		LOGGER.info("LOGIN: "+ login);
-		LOGGER.info("SENHA: "+ senha);
+	public void cidadaoLogin(String login, String senha){
 		Cidadao cidadao;
 		cidadao = uDao.buscarPorLoginESenha(login, senha);
 		if(cidadao == null){
