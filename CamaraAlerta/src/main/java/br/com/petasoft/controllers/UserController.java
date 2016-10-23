@@ -73,7 +73,7 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 		Cidadao cidadao;
 		cidadao = uDao.buscarPorLoginESenha(login, senha);
 		if(cidadao == null){
-			this.fail();
+			this.fail("Usuário não encontrado, verifique seu e-mail e senha!");
 		}else{
 			this.success(cidadao);
 		}
