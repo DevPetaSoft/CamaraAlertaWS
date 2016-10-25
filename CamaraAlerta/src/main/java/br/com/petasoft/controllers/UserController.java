@@ -1,5 +1,7 @@
 package br.com.petasoft.controllers;
 
+import java.util.Date;
+
 import javax.ws.rs.Produces;
 
 import org.apache.log4j.Logger;
@@ -34,9 +36,9 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	}
 	
 	/*
-	 *  Requisição get para realizar o login via facebook,
-	 *  Se encontrar um usuário pelo token, ele retorna o usuário,
-	 *  caso ao contrário, é enviada uma flag para realizar um novo cadastro.
+	 *  Requisiï¿½ï¿½o get para realizar o login via facebook,
+	 *  Se encontrar um usuï¿½rio pelo token, ele retorna o usuï¿½rio,
+	 *  caso ao contrï¿½rio, ï¿½ enviada uma flag para realizar um novo cadastro.
 	 */
 	@Get("/facebookLogin")
 	public void facebookLogin(String token){
@@ -51,9 +53,9 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	}
 	
 	/*
-	 *  Requisição get para realizar o login via google plus,
-	 *  Se encontrar um usuário pelo token, ele retorna o usuário,
-	 *  caso ao contrário, é enviada uma flag para realizar um novo cadastro.
+	 *  Requisiï¿½ï¿½o get para realizar o login via google plus,
+	 *  Se encontrar um usuï¿½rio pelo token, ele retorna o usuï¿½rio,
+	 *  caso ao contrï¿½rio, ï¿½ enviada uma flag para realizar um novo cadastro.
 	 */
 	@Get("/gplusLogin")
 	public void gplusLogin(String token){
@@ -68,16 +70,44 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	}
 	
 	// Realiza a o login de um cidadao
-	@Produces("text/json; charset=UTF-8")
 	@Post("/login")
 	public void cidadaoLogin(String login, String senha){
 		Cidadao cidadao;
 		cidadao = uDao.buscarPorLoginESenha(login, senha);
 		if(cidadao == null){
-			this.fail("Usuário não encontrado, verifique seu e-mail e senha!");
+			this.fail("UsuÃ¡rio nÃ£o encontrado, verifique seu e-mail e senha!");
 		}else{
 			this.success(cidadao);
 		}
+	}
+	
+	// Cria um novo cadastro de um cidadao contendo nome, login, email e senha
+	@Post("/novoCidadao")
+	public void novoCadastroCidadao(String nome, String login, String email, String senha){
+		//try{
+			LOGGER.info("Tentando criar um novo cidadao");
+			Cidadao cidadao = uDao.buscarUsuarioPorEmail(email);
+			if(cidadao==null){
+				cidadao = uDao.buscarUsuarioPorLogin(login);
+				if(cidadao==null){
+					cidadao = new Cidadao();
+					cidadao.setNome(nome);
+					cidadao.setLogin(login);
+					cidadao.setEmail(email);
+					cidadao.setSenha(senha);
+					cidadao.setDataCriacao(new Date());
+					uDao.salvarNovoCidadao(cidadao);	
+					this.success("Cadastro criado com sucesso!");				
+				}else{
+					this.fail("Login jÃ¡ cadastrado no sistema!");
+				}				
+			}else{
+				this.fail("E-mail jÃ¡ cadastrado no sistema!");
+			}
+			/*	}
+	catch(Throwable ex){
+			this.fail("NÃ£o foi possivel completar o seu cadastro");
+		}*/
 	}
 	
 }

@@ -28,7 +28,7 @@ public class Cidadao extends User implements Serializable {
 	@Column(nullable=false)
 	private Date dataCriacao;
 
-	@ManyToOne(targetEntity=Cidade.class, fetch=FetchType.EAGER, optional=false)
+	@ManyToOne(targetEntity=Cidade.class, fetch=FetchType.EAGER, optional=true)
 	private Cidade cidade;
 	
 	

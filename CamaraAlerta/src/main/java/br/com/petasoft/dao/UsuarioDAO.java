@@ -13,7 +13,7 @@ public class UsuarioDAO {
 	private final Session session;
 	
 	/*
-	 * Construtor do DAO do usuário, é inicializado uma nova sessão
+	 * Construtor do DAO do usuï¿½rio, ï¿½ inicializado uma nova sessï¿½o
 	 * */
 	public UsuarioDAO(){
 		this.session = CriadorDeSession.getSession();
@@ -56,6 +56,39 @@ public class UsuarioDAO {
 		Criteria criteria =  this.session.createCriteria(Cidadao.class);
 		criteria.add(Restrictions.eq("login", login));
 		criteria.add(Restrictions.eq("senha", senha));
+		Cidadao cidadao = (Cidadao) criteria.uniqueResult();
+		return cidadao;
+	}
+	
+	
+	/*
+	 * FunÃ§Ã£o para criar um novo cadastro de um cidadao 
+	 * */
+	public void salvarNovoCidadao(Cidadao cidadao){
+		Transaction tx = session.beginTransaction();
+		Cidadao c = new Cidadao();
+		session.save(cidadao);
+		tx.commit();
+	}
+	
+	/*
+	 * Consulta de um cidadao pelo Login
+	 * */
+	public Cidadao buscarUsuarioPorLogin(String login){
+		Criteria criteria = this.session.createCriteria(Cidadao.class);
+		criteria.add(Restrictions.eq("login", login));
+		criteria.add(Restrictions.eq("deleted", false));
+		Cidadao cidadao = (Cidadao) criteria.uniqueResult();
+		return cidadao;
+	}
+	
+	/*
+	 * Consulta de um cidadao pelo Email
+	 * */
+	public Cidadao buscarUsuarioPorEmail(String email){
+		Criteria criteria = this.session.createCriteria(Cidadao.class);
+		criteria.add(Restrictions.eq("email", email));
+		criteria.add(Restrictions.eq("deleted", false));
 		Cidadao cidadao = (Cidadao) criteria.uniqueResult();
 		return cidadao;
 	}
