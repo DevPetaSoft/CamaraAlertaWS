@@ -40,13 +40,15 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	 *  Se encontrar um usu�rio pelo token, ele retorna o usu�rio,
 	 *  caso ao contr�rio, � enviada uma flag para realizar um novo cadastro.
 	 */
-	@Get("/facebookLogin")
-	public void facebookLogin(String token){
+	@Post("/facebookLogin")
+	public void facebookLogin(String token, String nome, String email){
 		LOGGER.info("Realizando login por facebook");
 		Cidadao cidadao = new Cidadao();
 		cidadao = uDao.buscarUsuarioPorFacebookToken(token);
 		if(cidadao == null){
-			this.success("novoCadastro");
+			cidadao = uDao.salvarNovoCidadaoFacebookToken(token, nome, email);
+			LOGGER.info(cidadao.getNome());
+			this.success(cidadao);
 		}else{
 			this.success(cidadao);
 		}

@@ -1,5 +1,7 @@
 package br.com.petasoft.dao;
 
+import java.util.Date;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -44,6 +46,7 @@ public class UsuarioDAO {
 	public Cidadao salvarNovoCidadaoFacebookToken(String token, String nome, String email){
 		Transaction tx = session.beginTransaction();
 		Cidadao c = new Cidadao();
+		c.setDataCriacao(new Date());
 		c.setTokenFacebook(token);
 		c.setNome(nome);
 		c.setEmail(email);
