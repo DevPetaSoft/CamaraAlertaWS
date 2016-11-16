@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity(name="ca_denuncia")
 @Table(name="ca_denuncia")
-public class Denuncia {
+public class Denuncia{
 	@Id
 	@GeneratedValue
 	private int id;

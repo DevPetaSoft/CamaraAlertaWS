@@ -28,6 +28,7 @@ public class UserController extends br.com.caelum.vraptor.boilerplate.AbstractCo
 	@Post("/teste")
 	@NoCache
 	public void testePost(){
+		LOGGER.info("Batata");
 		Cidade cidade = new Cidade();
 		cidade.setEstado("Minas Gerais");
 		cidade.setNome("Varginha");
