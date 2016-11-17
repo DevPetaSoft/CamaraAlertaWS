@@ -1,5 +1,7 @@
 package br.com.petasoft.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,9 @@ import javax.persistence.Table;
 
 @Entity(name="ca_coordenadas")
 @Table(name="ca_coordenadas")
-public class Coordenadas {
+public class Coordenadas implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int id;

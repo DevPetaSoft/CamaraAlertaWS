@@ -1,5 +1,6 @@
 package br.com.petasoft.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity(name="ca_denuncia")
 @Table(name="ca_denuncia")
-public class Denuncia{
+public class Denuncia implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int id;

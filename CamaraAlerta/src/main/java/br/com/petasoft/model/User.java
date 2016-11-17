@@ -1,5 +1,7 @@
 package br.com.petasoft.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import javax.persistence.Table;
 @Entity(name="ca_usuario")
 @Table(name="ca_usuario")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class User {
+public class User implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	private int id;
